@@ -11,8 +11,8 @@ module.exports = {
         ]
     },
     output: {
-        path: path.resolve(__dirname, '/static'),
-        publicPath: '/static',
+        path: path.resolve('./static'),
+        publicPath: path.resolve('./static'),
         hashDigestLength: 5,
         // filename: `zoom-meeting-${buildVersion}-[name]-[chunkhash].min.js`,
         filename: '[name].min.js'

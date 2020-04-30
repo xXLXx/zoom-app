@@ -6,8 +6,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=development && set BABEL_ENV=development && webpack-dev-server --config webpack.config.dev.js --https false --open http://localhost:9999/index.html --watch",
-    "https": "set NODE_ENV=development && set BABEL_ENV=development && webpack-dev-server --config webpack.config.dev.js --https true --open https://localhost:9999/index.html --watch"
+    "dev": "set NODE_ENV=development && set BABEL_ENV=development && webpack-dev-server --config webpack.config.dev.js --https false --open http://localhost:9999/index.html --watch",
+    "start": "node index.js",
+    "https": "set NODE_ENV=development && set BABEL_ENV=development && webpack-dev-server --config webpack.config.dev.js --https true --open https://localhost:9999/index.html --watch",
+    "heroku-postbuild": "webpack -p --config webpack.config.dev.js"
   },
   "keywords": [
     "zoom",
@@ -22,6 +24,7 @@
     "@zoomus/websdk": "^1.7.6",
     "jquery": "^3.4.1",
     "lodash": "^4.17.14",
+    "node-static": "^0.7.11",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "7.1.0",
