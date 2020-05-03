@@ -1,4 +1,5 @@
 import { ZoomMtg } from '@zoomus/websdk';
+import { ZoomOverlay } from './zoom-overlay';
 
 console.log('checkSystemRequirements');
 console.log(JSON.stringify(ZoomMtg.checkSystemRequirements()));
@@ -23,8 +24,8 @@ const API_SECRET = '9LcUrOaL2AtXUHHk0AC4B2VP2KkDHcHugzHH';
 testTool = window.testTool;
 document.getElementById('display_name').value = "Local" + ZoomMtg.getJSSDKVersion()[0] + testTool.detectOS() + "#" + testTool.getBrowserInfo();
 
-document.getElementById('join_meeting').addEventListener('click', (e) => {
-    e.preventDefault();
+$(function (e) {
+    // e.preventDefault();
 
     const meetConfig = {
         apiKey: API_KEY,
@@ -69,4 +70,12 @@ document.getElementById('join_meeting').addEventListener('click', (e) => {
             });
         }
     });
+
+    $(document)
+        .on('zoom:onMessage', function (e, message) {
+            ZoomOverlay.handleSocketMessage(message);
+        })
+        .on('zoom:onUpdate', function (e, data) {
+            ZoomOverlay.handleComponentUpdate(data);
+        });
 });

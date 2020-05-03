@@ -22,7 +22,16 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        {
+                            plugins: [
+                                '@babel/plugin-proposal-class-properties'
+                            ]
+                        }
+                    ]
+                }
             },
             {
                 test: /\.css$/,
@@ -66,7 +75,7 @@ module.exports = {
         key: './localhost.key',
         host: '0.0.0.0',
         port: 9999,
-        hot: true,
+        hot: false,
         overlay: true,
         historyApiFallback: false,
         watchContentBase: true,
